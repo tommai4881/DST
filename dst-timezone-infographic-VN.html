@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global DST Changes - Vietnam Time Perspective</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Public Sans', 'Noto Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        .note-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 30px;
+            border-radius: 8px;
+            color: #856404;
+        }
+        
+        .note-box strong {
+            color: #664d03;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .note-box p {
+            color: #664d03;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            color: #1e3c72;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .timezone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .timezone-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .timezone-card .utc {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+        
+        .timezone-card .zones {
+            color: #495057;
+        }
+        
+        .dst-change-box {
+            background: linear-gradient(135deg, #c31432 0%, #240b36 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .dst-change-box h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .dst-change-box > p {
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .change-list {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .change-item {
+            padding: 10px;
+            margin: 8px 0;
+            background: rgba(0,0,0,0.4);
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            font-size: 0.95em;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .insight-box {
+            background: #e8f4f8;
+            border: 2px solid #0c5460;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .insight-box .insight-title {
+            color: #0c5460;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .insight-box p, .insight-box li {
+            color: #0c5460;
+        }
+        
+        .us-canada-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .us-canada-section h3,
+        .us-canada-section h4 {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .us-canada-section > p {
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .au-nz-section {
+            background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .au-nz-section h3,
+        .au-nz-section h4 {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .au-nz-section > p {
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .exception-note {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9em;
+            border: 1px solid #ffc107;
+        }
+        
+        .exception-note strong {
+            color: #664d03;
+        }
+        
+        .exception-note li {
+            color: #664d03;
+        }
+        
+        .time-arrow {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 1.2em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        th {
+            background: #1e3c72;
+            color: white;
+            font-weight: bold;
+        }
+        
+        td {
+            color: #333;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .vietnam-time {
+            color: #ffeb3b;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        
+        .fall-back-box {
+            background: linear-gradient(135deg, #f46b45 0%, #eea849 100%);
+        }
+        
+        .au-fall-box {
+            background: linear-gradient(135deg, #d38312 0%, #a83279 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌍 Global DST Changes</h1>
+            <p>Viewed from Vietnam Time (ICT / UTC+7) Perspective</p>
+        </div>
+        
+        <div class="note-box">
+            <strong>⏰ About Vietnam Time</strong>
+            <p><strong>North Vietnam Time (Hanoi):</strong> Abbreviated as <strong>ICT</strong> (Indochina Time) = <strong>UTC+7</strong></p>
+            <p><strong>Historical Note:</strong> South Vietnam used <strong>SST</strong> (Saigon Standard Time) = <strong>UTC+8</strong> from January 1, 1960 to June 12, 1975. After reunification, all of Vietnam adopted ICT (UTC+7).</p>
+        </div>
+
+        <div class="content">
+            <!-- European DST Section -->
+            <div class="section">
+                <h2 class="section-title">🇪🇺 European Time Zones & DST</h2>
+                
+                <div class="timezone-grid">
+                    <div class="timezone-card">
+                        <div class="utc">UTC -1</div>
+                        <div class="zones">AZOT (Azores Standard Time)</div>
+                    </div>
+                    <div class="timezone-card">
+                        <div class="utc">UTC +0</div>
+                        <div class="zones">AZOST (summer) | GMT/WET (winter)</div>
+                    </div>
+                    <div class="timezone-card">
+                        <div class="utc">UTC +1</div>
+                        <div class="zones">BST/IST/WEST (summer) | CET (winter)<br><em>+ BMT year-round (Biel Mean Time for Swatch .beats)</em></div>
+                    </div>
+                    <div class="timezone-card">
+                        <div class="utc">UTC +2</div>
+                        <div class="zones">CEST (summer) | EET (winter)</div>
+                    </div>
+                    <div class="timezone-card">
+                        <div class="utc">UTC +3</div>
+                        <div class="zones">EEST (summer) | MSK (winter/all-year in Russia)</div>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <div class="insight-title">💡 Key Insight: Summer Time = Next Zone East</div>
+                    <p>A region's summer time (DST) uses the same UTC offset as the standard time of the zone immediately to its east:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>AZOST (UTC+0) = GMT/WET standard time</li>
+                        <li>BST/IST/WEST (UTC+1) = CET standard time</li>
+                        <li>CEST (UTC+2) = EET standard time</li>
+                        <li>EEST (UTC+3) = MSK standard time</li>
+                    </ul>
+                </div>
+
+                <div class="dst-change-box">
+                    <h3>🌸 SPRING FORWARD (Last Sunday of March)</h3>
+                    <p style="text-align: center; margin-bottom: 15px;">Changes occur at <strong>1:00 AM UTC</strong> = <span class="vietnam-time">8:00 AM ICT</span></p>
+                    <div class="change-list">
+                        <div class="change-item">0:59 AM GMT/WET <span class="time-arrow">→</span> 1:00 AM AZOST</div>
+                        <div class="change-item">1:59 AM CET/BMT <span class="time-arrow">→</span> 2:00 AM BST/IST/WEST/BMT</div>
+                        <div class="change-item">2:59 AM EET <span class="time-arrow">→</span> 3:00 AM CEST</div>
+                        <div class="change-item">3:59 AM MSK <span class="time-arrow">→</span> 4:00 AM EEST/MSK</div>
+                        <div class="change-item" style="background: rgba(255,255,255,0.15);">7:59 AM ICT <span class="time-arrow">→</span> 8:00 AM ICT <em>(no change in Vietnam)</em></div>
+                    </div>
+                </div>
+
+                <div class="dst-change-box fall-back-box">
+                    <h3>🍂 FALL BACK (Last Sunday of October)</h3>
+                    <p style="text-align: center; margin-bottom: 15px;">Changes occur at <strong>1:00 AM UTC</strong> = <span class="vietnam-time">8:00 AM ICT</span></p>
+                    <div class="change-list">
+                        <div class="change-item">0:59 AM AZOST <span class="time-arrow">→</span> 1:00 AM GMT/WET</div>
+                        <div class="change-item">1:59 AM BST/IST/WEST/BMT <span class="time-arrow">→</span> 2:00 AM CET/BMT</div>
+                        <div class="change-item">2:59 AM CEST <span class="time-arrow">→</span> 3:00 AM EET</div>
+                        <div class="change-item">3:59 AM EEST/MSK <span class="time-arrow">→</span> 4:00 AM MSK</div>
+                        <div class="change-item" style="background: rgba(255,255,255,0.15);">7:59 AM ICT <span class="time-arrow">→</span> 8:00 AM ICT <em>(no change in Vietnam)</em></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- US/Canada Section -->
+            <div class="section">
+                <h2 class="section-title">🇺🇸🇨🇦 US-Canada Time Zones & DST</h2>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>UTC Offset</th>
+                            <th>Summer Time (DST)</th>
+                            <th>Standard Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>UTC -2:30</td>
+                            <td>NST (Newfoundland)</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>UTC -3</td>
+                            <td>AST (Atlantic)</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>UTC -3:30</td>
+                            <td>—</td>
+                            <td>NDT (Newfoundland DST)</td>
+                        </tr>
+                        <tr>
+                            <td>UTC -4</td>
+                            <td>EDT (Eastern DST)</td>
+                            <td>AST</td>
+                        </tr>
+                        <tr>
+                            <td>UTC -5</td>
+                            <td>CDT (Central DST)</td>
+                            <td>EST (Eastern)</td>
+                        </tr>
+                        <tr>
+                            <td>UTC -6</td>
+                            <td>MDT (Mountain DST)</td>
+                            <td>CST (Central)</td>
+                        </tr>
+                        <tr>
+                            <td>UTC -7</td>
+                            <td>PDT (Pacific DST)</td>
+                            <td>MST (Mountain)</td>
+                        </tr>
+                        <tr>
+                            <td>UTC -8</td>
+                            <td>AKDT (Alaska DST)</td>
+                            <td>PST (Pacific)</td>
+                        </tr>
+                        <tr>
+                            <td>UTC -9</td>
+                            <td>HDT (Hawaii-Aleutian DST)</td>
+                            <td>AKST (Alaska)</td>
+                        </tr>
+                        <tr>
+                            <td>UTC -10</td>
+                            <td>—</td>
+                            <td>HST (Hawaii)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="exception-note">
+                    <strong>⚠️ Exceptions (No DST):</strong>
+                    <ul style="margin-left: 20px; margin-top: 8px;">
+                        <li><strong>Saskatchewan:</strong> CST year-round</li>
+                        <li><strong>Yukon:</strong> MST year-round</li>
+                        <li><strong>Arizona:</strong> MST year-round (EXCEPT Navajo Nation, which observes DST)</li>
+                        <li><strong>Hawaii:</strong> HST year-round</li>
+                    </ul>
+                </div>
+
+                <div class="us-canada-section">
+                    <h3>🌸 SPRING FORWARD (2nd Sunday of March)</h3>
+                    <p style="text-align: center; margin-bottom: 15px;"><strong>2:00 AM ST → 3:00 AM DT</strong> (local time)</p>
+                    <div class="change-list">
+                        <div class="change-item">NST → NDT: <span class="vietnam-time">12:30 PM</span> Vietnam time</div>
+                        <div class="change-item">AST → ADT: <span class="vietnam-time">1:00 PM</span> Vietnam time</div>
+                        <div class="change-item">EST → EDT: <span class="vietnam-time">2:00 PM</span> Vietnam time</div>
+                        <div class="change-item">CST → CDT (except Saskatchewan): <span class="vietnam-time">3:00 PM</span> Vietnam time</div>
+                        <div class="change-item">MST → MDT (except AZ & Yukon): <span class="vietnam-time">4:00 PM</span> Vietnam time</div>
+                        <div class="change-item">PST → PDT: <span class="vietnam-time">5:00 PM</span> Vietnam time</div>
+                        <div class="change-item">AKST → AKDT: <span class="vietnam-time">6:00 PM</span> Vietnam time</div>
+                        <div class="change-item">HST → HDT (Aleutians only): <span class="vietnam-time">7:00 PM</span> Vietnam time</div>
+                    </div>
+                </div>
+
+                <div class="us-canada-section" style="background: linear-gradient(135deg, #b92b27 0%, #1565c0 100%);">
+                    <h3>🍂 FALL BACK (1st Sunday of November)</h3>
+                    <p style="text-align: center; margin-bottom: 15px;"><strong>2:00 AM DT → 1:00 AM ST</strong> (local time)</p>
+                    <div class="change-list">
+                        <div class="change-item">NDT → NST: <span class="vietnam-time">11:30 AM</span> Vietnam time</div>
+                        <div class="change-item">ADT → AST: <span class="vietnam-time">12:00 PM</span> Vietnam time</div>
+                        <div class="change-item">EDT → EST: <span class="vietnam-time">1:00 PM</span> Vietnam time</div>
+                        <div class="change-item">CDT → CST (except Saskatchewan): <span class="vietnam-time">2:00 PM</span> Vietnam time</div>
+                        <div class="change-item">MDT → MST (except AZ & Yukon): <span class="vietnam-time">3:00 PM</span> Vietnam time</div>
+                        <div class="change-item">PDT → PST: <span class="vietnam-time">4:00 PM</span> Vietnam time</div>
+                        <div class="change-item">AKDT → AKST: <span class="vietnam-time">5:00 PM</span> Vietnam time</div>
+                        <div class="change-item">HDT → HST (Aleutians only): <span class="vietnam-time">6:00 PM</span> Vietnam time</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Australia/New Zealand Section -->
+            <div class="section">
+                <h2 class="section-title">🇦🇺🇳🇿 Australia & New Zealand DST</h2>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>UTC Offset</th>
+                            <th>Time Zone</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>UTC +8</td>
+                            <td>AWST (Australian Western ST)</td>
+                            <td>Year-round in Western Australia</td>
+                        </tr>
+                        <tr>
+                            <td>UTC +9:30</td>
+                            <td>ACST (Australian Central ST)</td>
+                            <td>Year-round in Northern Territory</td>
+                        </tr>
+                        <tr>
+                            <td>UTC +10:30</td>
+                            <td>ACDT (Australian Central DST)</td>
+                            <td>South Australia (summer)</td>
+                        </tr>
+                        <tr>
+                            <td>UTC +10</td>
+                            <td>AEST (Australian Eastern ST)</td>
+                            <td>Year-round in Queensland</td>
+                        </tr>
+                        <tr>
+                            <td>UTC +11</td>
+                            <td>AEDT (Australian Eastern DST)</td>
+                            <td>NSW, VIC, TAS, ACT (summer)</td>
+                        </tr>
+                        <tr>
+                            <td>UTC +12</td>
+                            <td>NZST (New Zealand ST)</td>
+                            <td>New Zealand (winter)</td>
+                        </tr>
+                        <tr>
+                            <td>UTC +13</td>
+                            <td>NZDT (New Zealand DST)</td>
+                            <td>New Zealand (summer)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="exception-note">
+                    <strong>⚠️ No DST Regions:</strong>
+                    <ul style="margin-left: 20px; margin-top: 8px;">
+                        <li><strong>Western Australia:</strong> AWST year-round</li>
+                        <li><strong>Northern Territory:</strong> ACST year-round</li>
+                        <li><strong>Queensland:</strong> AEST year-round</li>
+                    </ul>
+                </div>
+
+                <div class="au-nz-section">
+                    <h3>🌸 SPRING FORWARD</h3>
+                    <p style="text-align: center; margin-bottom: 15px;"><strong>2:00 AM ST → 3:00 AM DT</strong> (local time)</p>
+                    
+                    <h4 style="margin-top: 20px;">🇦🇺 AUSTRALIA (1st Sunday of October)</h4>
+                    <div class="change-list">
+                        <div class="change-item">NSW, Tasmania, ACT, Victoria: AEST → AEDT<br><span class="vietnam-time">11:00 PM ICT</span> (the day before)</div>
+                        <div class="change-item">South Australia: ACST → ACDT<br><span class="vietnam-time">11:30 PM ICT</span> (the day before)</div>
+                    </div>
+                    
+                    <h4 style="margin-top: 20px;">🇳🇿 NEW ZEALAND (Last Sunday of September)</h4>
+                    <div class="change-list">
+                        <div class="change-item"><span class="vietnam-time">9:00 PM ICT</span> (the day before)<br>2:00 AM NZST → 3:00 AM NZDT</div>
+                        <div class="change-item">Chatham Islands:<br>2:45 AM CHAST → 3:45 AM CHADT</div>
+                    </div>
+                </div>
+
+                <div class="au-nz-section au-fall-box">
+                    <h3>🍂 FALL BACK (1st Sunday of April)</h3>
+                    <p style="text-align: center; margin-bottom: 15px;"><strong>3:00 AM DT → 2:00 AM ST</strong> (local time)</p>
+                    
+                    <h4 style="margin-top: 20px;">🇦🇺 AUSTRALIA</h4>
+                    <div class="change-list">
+                        <div class="change-item">NSW, Tasmania, ACT, Victoria: AEDT → AEST<br><span class="vietnam-time">11:00 PM ICT</span> (the day before)</div>
+                        <div class="change-item">South Australia: ACDT → ACST<br><span class="vietnam-time">11:30 PM ICT</span> (the day before)</div>
+                    </div>
+                    
+                    <h4 style="margin-top: 20px;">🇳🇿 NEW ZEALAND</h4>
+                    <div class="change-list">
+                        <div class="change-item"><span class="vietnam-time">9:00 PM ICT</span> (the day before)<br>3:00 AM NZDT → 2:00 AM NZST</div>
+                        <div class="change-item">Chatham Islands:<br>3:45 AM CHADT → 2:45 AM CHAST</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
